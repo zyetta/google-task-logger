@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 if __name__ == "__main__":
-    absolute_dir = os.getcwd()
+    absolute_dir = os.path.dirname(os.path.realpath(__file__))
     sql_controller = Sql(f"{absolute_dir}/data.db")
     gs_controller = GSheet(f"{absolute_dir}/{os.getenv('CREDS_FILENAME')}")
     SCOPES = ["https://www.googleapis.com/auth/tasks.readonly"]
