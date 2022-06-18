@@ -11,14 +11,16 @@ class SqliteController:
         try:
             conn = sqlite3.connect(self.db_name)
             c = conn.cursor()
-            c.execute("""
+            c.execute(
+                """
                 CREATE TABLE IF NOT EXISTS tasks (
                 id TEXT NOT NULL UNIQUE PRIMARY KEY,
                 task_id TEXT NOT NULL,
                 title TEXT NOT NULL,
                 task_list TEXT NOT NULL,
                 completed DATETIME NOT NULL);
-            """)
+            """
+            )
         except Exception as e:
             print(f"Could not successfully create database\n{e}")
         finally:
@@ -27,7 +29,7 @@ class SqliteController:
 
     def insert_task(self, task_data):
         conn = None
-        success = False;
+        success = False
         try:
             conn = sqlite3.connect(self.db_name)
             c = conn.cursor()
@@ -40,7 +42,9 @@ class SqliteController:
                 :title,
                 :task_list,
                 :completed
-            );""".format(table='tasks')
+            );""".format(
+                table="tasks"
+            )
             c.execute(sql_query, task_data)
             conn.commit()
             success = True

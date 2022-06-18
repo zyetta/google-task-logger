@@ -17,8 +17,12 @@ class Tasks:
 
     def generate_id(self):
         a = self.task_id
-        b = int(datetime.datetime.timestamp(datetime.datetime.strptime(self.completed, "%Y-%m-%dT%H:%M:%S.%f%z")))
-        id_str = f'{a}-{b}'.encode('utf-8')
+        b = int(
+            datetime.datetime.timestamp(
+                datetime.datetime.strptime(self.completed, "%Y-%m-%dT%H:%M:%S.%f%z")
+            )
+        )
+        id_str = f"{a}-{b}".encode("utf-8")
         return str(id_str.hex())
 
     def get_id(self):
